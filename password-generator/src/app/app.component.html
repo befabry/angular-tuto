@@ -1,35 +1,38 @@
-<h1>Password Generator</h1>
+<!-- (click) => event binding -->
+<form name="form" (ngSubmit)="onSubmit()">
+  <h1>Password Generator</h1>
 
-<div>
-  <label>Enter length</label>
-  <input (input)="onChangeLength($event)" />
-</div>
+  <div>
+    <label>Enter length</label>
+    <input [(ngModel)]="form().length" name="length" />
+  </div>
+  
+  <div>
+    <label>Use letters</label>
+    <input [(ngModel)]="form().includeLetters" type="checkbox" name="includeLetters" />
+  </div>
+  
+  <div>
+    <label>Use numbers</label>
+    <input [(ngModel)]="form().includeNumbers" type="checkbox" name="includeNumbers" />
+  </div>
+  
+  <div>
+    <label>Use symbols</label>
+    <input [(ngModel)]="form().includeSymbols" type="checkbox" name="includeSymbols" />
+  </div>
+  
+  <div>
+    <button type="submit">Generate</button>
+  </div>
+  
+  <div>
+    <label>Your Password</label>
+    <!-- [value] => property binding -->
+    <input [(ngModel)]="form().password" name="password" />
+  </div>
+</form>
 
-<div>
-  <label>Use letters</label>
-  <input (change)="onChangeUseLetters()" type="checkbox" />
-</div>
-
-<div>
-  <label>Use numbers</label>
-  <input (change)="onChangeUseNumbers()" type="checkbox" />
-</div>
-
-<div>
-  <label>Use symbols</label>
-  <input (change)="onChangeUseSymbols()" type="checkbox" />
-</div>
-
-<div>
-  <!-- (click) => event binding -->
-  <button (click)="onButtonClick()">Generate</button>
-</div>
-
-<div>
-  <label>Your Password</label>
-  <!-- [value] => property binding -->
-  <input [value]="password" />
-</div>
 
 <!-- interpolation syntax -->
-{{ password }}
+{{ this.form().password }}

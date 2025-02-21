@@ -1,4 +1,4 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, signal, untracked } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -9,38 +9,65 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  public form = signal({
-    length: 0,
-    includeLetters: false,
-    includeNumbers: false,
-    includeSymbols: false,
-    password: "",
+  public length = signal(0);
+  public includeLetters = signal(false);
+  public includeNumbers = signal(false);
+  public includeSymbols = signal(false);
+  public password = signal("");
+
+  public formValue = computed(() => {
+    return {
+      length: this.length(),
+      includeLetters: this.includeLetters(),
+      includeNumbers: this.includeNumbers(),
+      includeSymbols: this.includeSymbols(),
+      password: this.password(),
+    }
   })
 
+  // Create a computed Signal which derives a reactive value from an expression.
+  public isDisabled =  computed(() => {
+    const { length, includeLetters, includeNumbers, includeSymbols } = this.formValue();
+
+    if(!length || length === 0) {
+      return true;
+    }
+
+    if(includeLetters || includeNumbers || includeSymbols) {
+      console.log("include", false)
+      return false;
+    }
+
+    return true;
+  });
+
   onSubmit() {
+    const { length, includeLetters, includeNumbers, includeSymbols } = this.formValue();
+
     const numbers = "123456789";
     const letters = "abcdefghijklmnopqrstuvwxyz";
     const symbols = "!@#$%^&*()";
 
     let validChars = '';
-    if(this.form().includeLetters) {
+    if(includeLetters) {
       validChars += letters;
     }
 
-    if(this.form().includeNumbers) {
+    if(includeNumbers) {
       validChars += numbers;
     }
 
-    if(this.form().includeSymbols) {
+    if(includeSymbols) {
       validChars += symbols;
     }
 
     let generatedPassword = '';
-    for(let i = 0; i < this.form().length ; i++) {
+    for(let i = 0; i < length ; i++) {
       const index = Math.floor(Math.random() * validChars.length);
       generatedPassword += validChars[index];
     }
 
-    this.form().password = generatedPassword;
+    this.password.update(() => generatedPassword);
   }
 }
+

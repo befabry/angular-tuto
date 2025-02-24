@@ -1,0 +1,6 @@
+/* select the host element, apply a style to app-root */
+:host {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}

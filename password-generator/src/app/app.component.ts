@@ -1,8 +1,7 @@
-import { Component, computed, signal, untracked } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  standalone: true,
   selector: 'app-root',
   imports: [FormsModule],
   templateUrl: './app.component.html',

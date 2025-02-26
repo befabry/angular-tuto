@@ -1,0 +1,96 @@
+<div class="container">
+  <h3>Payment Form</h3>
+
+  <div class="row">
+    <div class="form-group col">
+      <label>Payee Name</label>
+      <input class="form-control" [(ngModel)]="name" name="name" />
+    </div>
+
+    <div class="col">
+      <label><b>Name</b></label>
+      <div>
+        {{ displayName() | titlecase }}
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col">
+      <label>Payment Date</label>
+      <input class="form-control" type="date" [(ngModel)]="date" name="date" />
+    </div>
+
+    <div class="col">
+      <label><b>Date</b></label>
+      <div>
+        {{ displayDate() | date : "MMMM d, yyyy" }}
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col">
+      <label>Payment Amount</label>
+      <input
+        class="form-control"
+        type="number"
+        [(ngModel)]="amount"
+        name="amount"
+      />
+    </div>
+
+    <div class="col">
+      <label><b>Amount</b></label>
+      <div>
+        {{ displayAmount() | currency : "KPW" }}
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col">
+      <label>Height</label>
+      <input
+        class="form-control"
+        type="number"
+        [(ngModel)]="height"
+        name="height"
+      />
+    </div>
+
+    <div class="col">
+      <label><b>Height</b></label>
+      <div>
+        {{ displayHeight() | number : "1.1-3" }}
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col">
+      <label>Miles</label>
+      <input
+        class="form-control"
+        type="number"
+        [(ngModel)]="miles"
+        name="miles"
+      />
+    </div>
+
+    <div class="col">
+      <label><b>Kilometers</b></label>
+      @if ((displayMiles() | convert: 'km') > 10) {
+      <div>
+        {{ displayMiles() | convert : 'km' | number: "1.0-2"}}
+      </div>
+      }
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col">
+      {{ car | json }}
+    </div>
+  </div>
+</div>

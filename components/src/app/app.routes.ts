@@ -1,17 +1,21 @@
 import { Routes } from '@angular/router';
-import { ElementsModule } from './elements/elements.module';
-import { CollectionsModule } from './collections/collections.module';
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 export const routes: Routes = [
   {
     path: 'elements',
-    loadChildren: () => ElementsModule,
+    loadChildren: () =>
+      // Lazy loading https://angular.dev/reference/migrations/route-lazy-loading
+      import('./elements/elements.module').then((m) => m.ElementsModule),
   },
   {
     path: 'collections',
-    loadChildren: () => CollectionsModule,
+    loadChildren: () =>
+      // Lazy loading
+      import('./collections/collections.module').then(
+        (m) => m.CollectionsModule
+      ),
   },
   {
     path: '',

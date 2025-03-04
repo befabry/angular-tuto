@@ -1,2 +1,30 @@
 <app-divider> Table Component </app-divider>
 <app-table [data]="data" [headers]="headers" classNames="striped celled" />
+
+<app-divider>Tab Menu</app-divider>
+<div class="ui grid">
+  <div class="four wide column">
+    <div class="ui vertical fluid tabular menu">
+      <a class="item" routerLink="/collections" routerLinkActive="active"
+        >Biography</a
+      >
+      <a
+        class="item"
+        routerLink="/collectionZs/companies"
+        routerLinkActive="active"
+        >Companies</a
+      >
+      <a
+        class="item"
+        routerLink="/collections/partners"
+        routerLinkActive="active"
+        >Partners</a
+      >
+    </div>
+  </div>
+  <div class="twelve wide stretched column">
+    <div class="ui segment">
+      <router-outlet />
+    </div>
+  </div>
+</div>

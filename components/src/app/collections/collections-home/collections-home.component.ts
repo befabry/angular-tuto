@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { TableComponent } from '../table/table.component';
 import { DividerComponent } from '../../shared/divider/divider.component';
+import { RouterOutlet } from '@angular/router';
 
 export type DataType = {
   name: string;
@@ -16,7 +17,7 @@ export type HeaderType = {
 
 @Component({
   selector: 'app-collections-home',
-  imports: [TableComponent, DividerComponent],
+  imports: [RouterOutlet, TableComponent, DividerComponent],
   templateUrl: './collections-home.component.html',
   styleUrl: './collections-home.component.css',
 })

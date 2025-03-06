@@ -18,6 +18,14 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'views',
+    loadChildren: () =>
+      // Lazy loading
+      import('./views/views.module').then(
+        (m) => m.ViewsModule
+      ),
+  },
+  {
     path: '',
     component: HomeComponent,
   },

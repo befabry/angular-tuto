@@ -21,9 +21,13 @@ export const routes: Routes = [
     path: 'views',
     loadChildren: () =>
       // Lazy loading
-      import('./views/views.module').then(
-        (m) => m.ViewsModule
-      ),
+      import('./views/views.module').then((m) => m.ViewsModule),
+  },
+  {
+    path: 'mods',
+    loadChildren: () =>
+      // Lazy loading
+      import('./mods/mods.module').then((m) => m.ModsModule),
   },
   {
     path: '',

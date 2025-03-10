@@ -1,0 +1,15 @@
+<div class="ui accordion styled">
+  @for (item of items(); track $index) {
+  <div
+    class="title"
+    (click)="onClick($index)"
+    [ngClass]="{ active: $index === openedItemIndex }"
+  >
+    <i class="dropdown icon"></i>
+    {{ item.title }}
+  </div>
+  <div class="content" [ngClass]="{ active: $index === openedItemIndex }">
+    {{ item.content }}
+  </div>
+  }
+</div>
